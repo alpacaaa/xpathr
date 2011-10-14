@@ -101,6 +101,15 @@ Star/Unstar the current `$gist-id`.
 
 
 
+#### Add a comment
+
+	<textarea name="comment"></textarea>
+	<input type="submit" name="action[add-comment]" />
+
+Add a comment.
+
+
+
 ### Extra
 
 To update gists you need a valid oauth token from github.  

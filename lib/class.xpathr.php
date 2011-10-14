@@ -151,12 +151,24 @@
 			$token = self::getToken();
 			if (!$token) return;
 
-			$method = 'PUT';
-			if ($action !== 'star') $method = 'DELETE';
+			$method = 'put';
+			if ($action !== 'star') $method = 'delete';
 
 			return self::api('/gists/'. $id. '/star', array(
 				'method' => $method,
 				'token'  => $token
+			));
+		}
+
+		public static function addComment($id, $comment)
+		{
+			$token = self::getToken();
+			if (!$token) return;
+
+			return self::api('/gists/'. $id. '/comments', array(
+				'method' => 'post',
+				'token'  => $token,
+				'fields' => array('body' => $comment)
 			));
 		}
 
@@ -196,7 +208,7 @@
 
 				$ch->setopt(CURLOPT_CUSTOMREQUEST, $options['method']);
 
-				//$ch->setopt('RETURNHEADERS', 1);
+				$ch->setopt('RETURNHEADERS', 1);
 				$ch->setopt('CONTENTTYPE', 'application/json');
 				$ch->setopt(CURLOPT_POSTFIELDS, json_encode($options['fields']));
 
