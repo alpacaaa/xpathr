@@ -146,6 +146,20 @@
 			));
 		}
 
+		public static function starGist($id, $action = 'star')
+		{
+			$token = self::getToken();
+			if (!$token) return;
+
+			$method = 'PUT';
+			if ($action !== 'star') $method = 'DELETE';
+
+			return self::api('/gists/'. $id. '/star', array(
+				'method' => $method,
+				'token'  => $token
+			));
+		}
+
 		public static function githubify($array)
 		{
 			foreach ($array as $k => $v)
@@ -187,7 +201,10 @@
 				$ch->setopt(CURLOPT_POSTFIELDS, json_encode($options['fields']));
 
 				$data = $ch->exec();
-				if (!$data)
+				$info = $ch->getInfoLast();
+				$status = intval($info['http_code']);
+
+				if ($status < 200 || $status >= 400)
 					throw new XpathrException('Problems with github api :(');
 
 				$data = json_decode($data);

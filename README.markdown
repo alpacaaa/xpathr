@@ -91,6 +91,16 @@ Fork the current `$gist-id`.
 
 
 
+#### Star/Unstar a gist
+
+	<input type="submit" name="action[star-gist]" value="Star this gist" />
+	<input type="submit" name="action[unstar-gist]" value="Unstar this gist" />
+
+Star/Unstar the current `$gist-id`.
+
+
+
+
 ### Extra
 
 To update gists you need a valid oauth token from github.  
