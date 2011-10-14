@@ -36,7 +36,11 @@
 			$params  = Symphony::Engine()->Page()->_param;
 			$id = $params['gist-id'];
 
-			$id = Xpathr::forkGist($id, $options);
-			if ($id) redirect(URL. '/view/'. $id);
+			$new = Xpathr::forkGist($id, $options);
+			if ($new)
+			{
+				file_get_contents(URL. '/view/'. $id. '?update');
+				redirect(URL. '/view/'. $new);
+			}
 		}
 	}
