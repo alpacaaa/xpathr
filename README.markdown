@@ -82,6 +82,15 @@ This will create a new file named `new-filename.xml`.
 
 
 
+#### Fork a gist
+
+	<input type="submit" name="action[fork-gist]" />
+
+Fork the current `$gist-id`.
+
+
+
+
 ### Extra
 
 To update gists you need a valid oauth token from github.  
@@ -93,3 +102,4 @@ You might also need to register a github application to set the proper callbacks
 Apps can be [registered here](https://github.com/account/applications) while you might find 
 useful [this thread](http://symphony-cms.com/discuss/thread/78058/1/#position-9) to 
 setup the oauth extension correctly.
+

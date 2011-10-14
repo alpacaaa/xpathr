@@ -135,6 +135,17 @@
 			));
 		}
 
+		public static function forkGist($id)
+		{
+			$token = self::getToken();
+			if (!$token) return;
+
+			return self::api('/gists/'. $id. '/fork', array(
+				'method' => 'post',
+				'token'  => $token
+			));
+		}
+
 		public static function githubify($array)
 		{
 			foreach ($array as $k => $v)
