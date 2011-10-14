@@ -38,5 +38,7 @@
 
 			$comment = $_POST['comment'];
 			Xpathr::addComment($id, $comment);
+
+			redirect(URL. '/view/'. $id. '?update');
 		}
 	}

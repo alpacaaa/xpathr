@@ -172,6 +172,11 @@
 			));
 		}
 
+		public static function getComments($id)
+		{
+			return self::api('/gists/'. $id. '/comments');
+		}
+
 		public static function githubify($array)
 		{
 			foreach ($array as $k => $v)

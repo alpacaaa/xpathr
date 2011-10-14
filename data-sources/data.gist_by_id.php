@@ -56,12 +56,12 @@
 			$result = new XMLElement($this->dsParamROOTELEMENT);
 			$update = Xpathr::needUpdate();
 
-			try{
-				include(TOOLKIT . '/data-sources/datasource.section.php');
-
+			try {
 				/* Force update */
 				if ($update && !self::$run)
 					throw new FrontendPageNotFoundException();
+
+				include(TOOLKIT . '/data-sources/datasource.section.php');
 			}
 			catch(FrontendPageNotFoundException $e){
 				/* Grab gist from github! */

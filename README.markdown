@@ -106,7 +106,7 @@ Star/Unstar the current `$gist-id`.
 	<textarea name="comment"></textarea>
 	<input type="submit" name="action[add-comment]" />
 
-Add a comment.
+Add a comment :)
 
 
 
