@@ -213,7 +213,7 @@
 
 				$ch->setopt(CURLOPT_CUSTOMREQUEST, $options['method']);
 
-				$ch->setopt('RETURNHEADERS', 1);
+				//$ch->setopt('RETURNHEADERS', 1);
 				$ch->setopt('CONTENTTYPE', 'application/json');
 				$ch->setopt(CURLOPT_POSTFIELDS, json_encode($options['fields']));
 
