@@ -177,6 +177,13 @@
 			return self::api('/gists/'. $id. '/comments');
 		}
 
+		public static function getUser($token)
+		{
+			return self::api('/user', array(
+				'token' => $token
+			));
+		}
+
 		public static function githubify($array)
 		{
 			foreach ($array as $k => $v)
