@@ -1,0 +1,102 @@
+html {
+  font-size:14px;
+  line-height:1.5;
+  font-family:'Droid Sans', sans-serif;
+  color:#f7f7f7;
+  background:#181b1f;
+}
+a {
+  color:#ffd02e;
+  text-decoration:none;
+}
+a:hover { text-decoration:underline; }
+#main {
+  width:960px;
+  margin:0 auto;
+  overflow:hidden;
+}
+#head {
+  width:100%;
+  overflow:hidden;
+  margin:1em 0 2em;
+}
+#head h2 { float:left; }
+#head #actions { float:right; }
+#head #actions input {
+  font-family:'Droid Sans';
+  font-size:14px;
+  color:#ffffff;
+  font-weight:bold;
+  background:#ff6400;
+  padding:4px;
+  border:0 none;
+  cursor:pointer;
+  margin-left:1em;
+}
+#head #actions input:hover { background:#ff8333; }
+#files {
+  width:780px;
+  float:left;
+  display:block;
+  margin-right:20px;
+}
+#files >div {
+  width:380px;
+  float:left;
+  display:block;
+  margin-right:20px;
+}
+#files >div:last-child { margin:0; }
+#files .meta { position:relative; }
+#files h5 {
+  padding:10px;
+  background:#dddddd;
+  float:left;
+  font-weight:bold;
+  color:#222222;
+  cursor:pointer;
+}
+#files ul {
+  display:none;
+  position:absolute;
+  top:30px;
+  background:#dddddd;
+  padding:10px;
+}
+#files li { margin-bottom:.5em; }
+#files li a { color:#444444; }
+#files h5:hover +ul, #files ul:hover { display:block; }
+#files textarea {
+  width:370px;
+  float:left;
+  display:block;
+  margin-right:20px;
+  height:30em;
+  border:1px solid #8e99a8;
+  padding:5px;
+}
+#meta {
+  width:160px;
+  float:left;
+  display:block;
+  margin-right:20px;
+  margin:0;
+}
+#meta >div { margin-bottom:1.5em; }
+#meta #user {
+  overflow:hidden;
+  padding:10px;
+  background:#2e343c;
+}
+#meta #user img {
+  width:30px;
+  float:left;
+  margin-right:10px;
+}
+#meta #user a {
+  float:left;
+  padding:5px 0;
+  font-weight:bold;
+  color:#f7f7f7;
+}
+#meta h4 { font-weight:bold; }

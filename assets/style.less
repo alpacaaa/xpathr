@@ -1,0 +1,74 @@
+
+
+@cols: 12;
+@span: 60px;
+@gutter: 20px;
+
+.container(@n: @cols) { width: @n * (@span + @gutter); margin: 0 auto; overflow: hidden; }
+.cols(@n; @pad: 0) {
+	width: (@n * @span) + (@n -1) * @gutter - @pad; 
+	float: left; display: block; margin-right: @gutter; 
+}
+
+
+@orange: #ff6400;
+@yellow: #ffd02e;
+@black: #181B1f;
+@white: #f7f7f7;
+
+html { 
+	font-size: 14px; line-height: 1.5; font-family: 'Droid Sans', sans-serif; 
+	color: @white; background: @black; 
+}
+
+a { color: @yellow; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+.button() { 
+	font-family: 'Droid Sans'; font-size: 14px; color: #fff; font-weight: bold; 
+	background: @orange; padding: 4px; border: 0 none; cursor: pointer;
+
+	&:hover { background: lighten(@orange, 10%); }
+}
+
+
+#main { .container(); }
+
+#head {
+	width: 100%; overflow: hidden; margin: 1em 0 2em;
+
+	h2 { float: left; }
+	#actions { float: right; }
+	#actions input { .button(); margin-left: 1em; }
+}
+
+#files {
+	.cols(10);
+
+	>div { .cols(5); }
+	>div:last-child { margin: 0; }
+
+	.meta { position: relative; }
+	h5 { padding: 10px; background: #ddd; float: left; font-weight: bold; color: #222; cursor: pointer; }
+	ul { display: none; position: absolute; top: 30px; background: #ddd; padding: 10px; }
+	li { margin-bottom: .5em; }
+	li a { color: #444; }
+
+	h5:hover +ul, ul:hover { display: block; }
+
+	textarea { .cols(5; 10px); height: 30em; border: 1px solid lighten(@black, 50%); padding: 5px; }
+}
+
+#meta {
+	.cols(2; -20px); margin: 0;
+
+	>div { margin-bottom: 1.5em; }
+
+	#user { overflow: hidden; padding: 10px; background: lighten(@black, 10%); }
+	#user img { width: 30px; float: left; margin-right: 10px; }
+	#user a { float: left; padding: 5px 0; font-weight: bold; color: @white; }
+
+	h4 { font-weight: bold; }
+}
+

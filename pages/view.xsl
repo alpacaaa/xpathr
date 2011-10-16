@@ -19,130 +19,103 @@
 
 
 <xsl:template match="gist-by-id/entry">
-	<p>
-		So this is gist <a href="http://gist.github.com/{$gist-id}">
-			#<xsl:value-of select="$gist-id" />
-		</a>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/reset/reset-min.css" />
+		<link rel='stylesheet' type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans" />
+		<link rel="stylesheet" href="{$workspace}/assets/style.php" />
 
-		<xsl:if test="$sha1">
-			@ 
-			<a href="{$root}/view/{$gist-id}/{$sha1}">
-				<xsl:value-of select="$sha1" />
-			</a>
-		</xsl:if>
+		<title>Xpathr</title>
+	</head>
+	<body>
+		<form id="main" method="post" action="">
+			<div id="head">
+				<h2>gist #<xsl:value-of select="$gist-id" /></h2>
 
-		<br />
-		You can <a href="{$root}/process/{$gist-id}/{$sha1}">process it</a> anytime
-	</p>
-
-	<p>It consists of the following files</p>
-	
-	<ul>
-		<xsl:apply-templates select="/data/files-by-revision/entry" />
-	</ul>
-
-
-
-	<xsl:variable name="revisions" select="count(revisions-list/revision)"></xsl:variable>
-
-
-	<form action="" method="post">
-
-
-		<xsl:if test="$revisions = 1">
-			<p>
-				Now I want you to edit the xml file.
-			</p>
-		
-			<textarea name="files[master.xml]">
-				<xsl:value-of select="/data/files-by-revision/entry[filename/text() = 'master.xml']/content" />
-			</textarea>
-		</xsl:if>
-
-
-		<xsl:if test="$revisions = 2">
-			<p>
-				Hey! you did it! Why don't you add another file?
-			</p>
-
-			<label>Filename</label>
-			<input type="text" name="new-file[filename]" value="new-file.xml" />
-
-			<div>
-				<textarea name="new-file[content]">content of the new file</textarea>
+				<div id="actions">
+					<a href="{$root}/process/{$gist-id}/{$sha1}" class="process">Process</a>
+					<input type="submit" name="action[update-gist]" value="Save" />
+				</div>
 			</div>
-		</xsl:if>
+
+			<div id="files">
+				<xsl:apply-templates select="/data/files-by-revision/entry[filename/text() = 'master.xml' or filename/text() = 'master.xsl']" />
+			</div>
+
+			<div id="meta">
+				<div id="user">
+					<img src="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png" />
+					<a href="#user">
+						<xsl:value-of select="user" />
+					</a>
+				</div>
+
+				<div id="revisions">
+					<h4>Revisions</h4>
+					<ul>
+						<xsl:apply-templates select="revisions-list/revision" />
+					</ul>
+				</div>
+
+				<xsl:if test="forks-list/fork">
+					<div id="forks">
+						<h4>Forks</h4>
+						<ul>
+							<xsl:apply-templates select="forks-list/fork" />
+						</ul>
+					</div>
+				</xsl:if>
+			</div>
+
+		</form>
+	</body>
+</html>
+</xsl:template>
 
 
-		<xsl:if test="$revisions = 3">
-			<xsl:variable name="fn" select="/data/files-by-revision/entry[last()]/filename"></xsl:variable>
-
-			<p>
-				That was easy... Now try to rename file <xsl:value-of select="$fn" />
-			</p>
-
-			<label>New filename</label>
-			<input type="text" name="rename[{$fn}]" value="{$fn}" />
-			
-			<p>
-				Remember to always send the data too, otherwise the file will be deleted!
-			</p>
-			
-			<textarea name="files[{$fn}]">
-				<xsl:value-of select="/data/files-by-revision/entry[last()]/content" />
-			</textarea>
-		</xsl:if>
-
-
-		<xsl:if test="$revisions = 4">
-			<xsl:variable name="fn" select="/data/files-by-revision/entry[last()]/filename"></xsl:variable>
-
-			<p>
-				Ok we're almost done. Now delete the file <xsl:value-of select="$fn" /> (just submit this form).
-			</p>
-			
-			<input type="hidden" name="deletes[{$fn}]" value="Delete {$fn}" />
-		</xsl:if>
-
-
-		<xsl:if test="$revisions &gt;= 5">
-			<p>
-				Awesome mate! Feel free to <a href="{$root}/new">create a new gist</a>. These are the gist revisions: 
-			</p>
-
+<xsl:template match="files-by-revision/entry">
+	<div>
+		<div class="meta">
+			<h5><xsl:value-of select="filename" /></h5>
 			<ul>
-				<xsl:apply-templates select="revisions-list/revision" />
+				<xsl:apply-templates select="/data/files-by-revision/entry" mode="list">
+					<xsl:with-param name="current" select="filename" />
+				</xsl:apply-templates>
 			</ul>
-		</xsl:if>
+		</div>
+
+		<textarea name="files[{filename}]"><xsl:value-of select="content" /></textarea>
+	</div>
+</xsl:template>
 
 
+<xsl:template match="files-by-revision/entry" mode="list">
+	<xsl:param name="current" />
 
-
-		<xsl:if test="$revisions &lt; 5">
-			<input type="submit" name="action[update-gist]"/>
-		</xsl:if>
-
-
-	</form>
+	<xsl:if test="$current != filename">
+		<li>
+			<a href="#">
+				<xsl:value-of select="filename" />
+			</a>
+		</li>
+	</xsl:if>
 </xsl:template>
 
 
 
-<xsl:template match="files-by-revision/entry">
+<xsl:template match="revisions-list/revision" >
 	<li>
-		<a href="http://gist.github.com/{$gist-id}/{$sha1}#file_{filename}">
-			<xsl:value-of select="filename" />
+		<a href="{$root}/view/{$gist-id}/{@version}">
+			<xsl:value-of select="substring(@version, 1, 6)" />
 		</a>
 	</li>
 </xsl:template>
 
-
-<xsl:template match="revisions-list/revision">
+<xsl:template match="forks-list/fork">
 	<li>
-		<a href="{$root}/view/{$gist-id}/{@version}">
-			<xsl:value-of select="@version" />
-		</a> 
-		( <xsl:value-of select="changes/@total" /> changes)
+		<a href="{$root}/view/{@id}">
+			<xsl:value-of select="@user" />
+		</a>
 	</li>
 </xsl:template>
 
