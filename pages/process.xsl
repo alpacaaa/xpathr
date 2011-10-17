@@ -2,32 +2,29 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:output method="xml"
-	doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
-	doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
-	omit-xml-declaration="yes"
-	encoding="UTF-8"
-	indent="yes" />
+<xsl:import href="../utilities/master.xsl" />
 
-<xsl:param name="sha1" select="''" />
+<xsl:template match="data">
+	<div id="main">
 
-<xsl:template match="/">
-	<h2>
-		Result of gist 
-		<a href="{$root}/view/{$gist-id}">
-			#<xsl:value-of select="$gist-id" />
-		</a>
+		<div id="head">
+			<h2>
+				Result of gist 
+				<a href="{$root}/view/{$gist-id}">
+					#<xsl:value-of select="$gist-id" />
+				</a>
 
-		<xsl:if test="$sha1">
-			@ 
-			<a href="{$root}/view/{$gist-id}/{$sha1}">
-				<xsl:value-of select="$sha1" />
-			</a>
-		</xsl:if>
-	</h2>
+				<xsl:if test="$sha1">
+					@ 
+					<a href="{$root}/view/{$gist-id}/{$sha1}">
+						<xsl:value-of select="substring($sha1, 1, 6)" />
+					</a>
+				</xsl:if>
+			</h2>
+		</div>
 
-
-	<xsl:apply-templates select="data/process-gist-by-id/*" />
+		<xsl:apply-templates select="process-gist-by-id/*" />
+	</div>
 
 </xsl:template>
 

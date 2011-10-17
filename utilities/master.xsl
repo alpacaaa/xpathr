@@ -8,11 +8,12 @@
 	omit-xml-declaration="yes"
 	encoding="UTF-8"
 	indent="yes" />
-	
+
+<xsl:param name="sha1" select="''" />
 
 <xsl:template match="/">
 
-<html>
+<html class="{$current-page}">
 	<head>
 		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/reset/reset-min.css" />
 		<link rel='stylesheet' type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans" />
@@ -27,10 +28,10 @@
 
 				<ul>
 					<li>
-						<a href="#">new gist</a>
+						<a href="{$root}/new">new gist</a>
 					</li>
 					<li class="login">
-						<a href="#">login</a>
+						<xsl:apply-templates select="data/events/github" />
 					</li>
 				</ul>
 			</div>
@@ -42,5 +43,15 @@
 
 </xsl:template>
 
+
+<xsl:template match="events/github">
+	<xsl:if test="@logged-in = 'yes'">
+		<a href="?github-oauth-action=logout">logout</a>
+	</xsl:if>
+
+	<xsl:if test="@logged-in = 'no'">
+		<a href="{$root}/authenticate">login</a>
+	</xsl:if>
+</xsl:template>
 
 </xsl:stylesheet>

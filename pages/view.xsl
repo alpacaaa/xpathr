@@ -4,11 +4,8 @@
 
 <xsl:import href="../utilities/master.xsl" />
 
-<xsl:param name="sha1" select="''" />
-
 <xsl:param name="url-f1" select="'master.xml'" />
 <xsl:param name="url-f2" select="'master.xsl'" />
-
 
 <xsl:template match="data">
 	<xsl:apply-templates select="gist-by-id/entry" />
@@ -18,7 +15,15 @@
 <xsl:template match="gist-by-id/entry">
 	<form id="main" method="post" action="">
 		<div id="head">
-			<h2>gist #<xsl:value-of select="$gist-id" /></h2>
+			<h2>
+				gist #<xsl:value-of select="$gist-id" />
+				<xsl:if test="$sha1">
+					@ 
+					<a href="{$root}/view/{$gist-id}/{$sha1}">
+						<xsl:value-of select="substring($sha1, 1, 6)" />
+					</a>
+				</xsl:if>
+			</h2>
 
 			<div id="actions">
 				<a href="{$root}/process/{$gist-id}/{$sha1}" class="process">Process</a>
@@ -117,6 +122,10 @@
 
 <xsl:template match="revisions-list/revision" >
 	<li>
+		<xsl:if test="$sha1 = @version">
+			<xsl:attribute name="class">current</xsl:attribute>
+		</xsl:if>
+
 		<a href="{$root}/view/{$gist-id}/{@version}">
 			<xsl:value-of select="substring(@version, 1, 6)" />
 		</a>

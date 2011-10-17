@@ -2,44 +2,48 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:output method="xml"
-	doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
-	doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
-	omit-xml-declaration="yes"
-	encoding="UTF-8"
-	indent="yes" />
+<xsl:import href="../utilities/master.xsl" />
 
-<xsl:template match="/">
-	<h1>hi!</h1>
-	<p>
-		This will show you the awesomeness of the xpathr extension in all its glory :)
-	</p>
-	
-	<xsl:if test="data/params/github-access-token">
-		<p>
-			Looks like you are authenticated, let's create a simple gist.
-		</p>
+<xsl:template match="data">
+	<form id="main" method="post" action="">
+		<div id="head">
+			<h2>Create new gist</h2>
 
-		<form action="" method="post">
+			<div id="actions">
+				<input type="submit" name="action[create-gist]" value="Create" />
+			</div>
+		</div>
+
+		<div id="files">
 			<div>
-				<label>XML</label>
-				<textarea name="xml"></textarea>
+				<div class="meta">
+					<h5>XML</h5>
+				</div>
+
+				<textarea name="xml">&lt;data&gt;
+	&lt;hello&gt;paste your xml here&lt;/hello&gt;
+&lt;/data&gt;</textarea>
 			</div>
 
 			<div>
-				<label>XSL</label>
-				<textarea name="xsl"></textarea>
+				<div class="meta">
+					<h5>XSL</h5>
+				</div>
+
+				<textarea name="xsl">&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"&gt;
+
+&lt;xsl:output method="xml" indent="yes" /&gt;
+
+&lt;xsl:template match="/"&gt;
+	&lt;hi&gt;
+		&lt;xsl:value-of select="data/hello" /&gt;
+	&lt;/hi&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</textarea>
 			</div>
+		</div>
 
-			<input type="submit" name="action[create-gist]" />
-		</form>
-	</xsl:if>
-
-	<xsl:if test="not(data/params/github-access-token)">
-		<p>
-			You're not yet authenticated, please <a href="{$root}/authenticate">go authenticate</a>!
-		</p>
-	</xsl:if>
+	</form>
 </xsl:template>
-
 </xsl:stylesheet>

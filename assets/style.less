@@ -64,7 +64,7 @@ a:hover { text-decoration: underline; }
 	>div:last-child { margin: 0; }
 
 	.meta { position: relative; }
-	h5 { padding: 10px; background: #ddd; float: left; font-weight: bold; color: #222; cursor: pointer; }
+	h5 { padding: 10px; background: #ddd; float: left; font-weight: bold; color: #222; cursor: default; }
 	ul { display: none; position: absolute; top: 30px; background: #ddd; padding: 10px; }
 	li { margin-bottom: .5em; }
 	li a { color: #444; }
@@ -84,5 +84,17 @@ a:hover { text-decoration: underline; }
 	#user a { float: left; padding: 5px 0; font-weight: bold; color: @white; }
 
 	h4 { font-weight: bold; }
+
+	#revisions .current { font-weight: bold; }
 }
 
+
+
+
+html.new {
+	#files { width: 100%; }
+	#files >div { .cols(6; -10px); }
+	#files >div:last-child { margin: 0; }
+
+	#files textarea { width: 100%; }
+}
