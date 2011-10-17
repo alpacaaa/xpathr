@@ -33,13 +33,27 @@ a:hover { text-decoration: underline; }
 }
 
 
+#header {
+	background: #000; overflow: hidden; margin-bottom: 1em;
+
+	>div { .container(); margin: .5em auto; }
+	h1 { float: left; padding: .5em 0; }
+
+	ul { float: right; }
+	ul li { float: left; }
+
+	li a { color: #ddd; display: block; padding: .5em; }
+	li.login a { font-weight: bold; }
+}
+
+
 #main { .container(); }
 
 #head {
-	width: 100%; overflow: hidden; margin: 1em 0 2em;
+	width: 100%; overflow: hidden; margin: 1em 0;
 
 	h2 { float: left; }
-	#actions { float: right; }
+	#actions { .cols(2); margin: 0; float: right; text-align: right; }
 	#actions input { .button(); margin-left: 1em; }
 }
 
@@ -61,11 +75,11 @@ a:hover { text-decoration: underline; }
 }
 
 #meta {
-	.cols(2; -20px); margin: 0;
+	.cols(2; -20px); margin: 3em 0 0;
 
 	>div { margin-bottom: 1.5em; }
 
-	#user { overflow: hidden; padding: 10px; background: lighten(@black, 10%); }
+	#user { overflow: hidden; padding: 10px; background: lighten(@black, 10%); margin-top: -1px; }
 	#user img { width: 30px; float: left; margin-right: 10px; }
 	#user a { float: left; padding: 5px 0; font-weight: bold; color: @white; }
 
