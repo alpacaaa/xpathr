@@ -6,7 +6,7 @@
 	$lss = filemtime('style.less');
 
 	if ($css > $lss && !isset($_GET['force']))
-		echo file_get_contents('style.css');
+		die(file_get_contents('style.css'));
 
 	require_once 'less.inc.php';
 

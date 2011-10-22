@@ -12,6 +12,8 @@
 </xsl:template>
 
 
+<xsl:variable name="owner" select="$github-user = /data/gist-by-id/entry/user"></xsl:variable>
+
 <xsl:template match="gist-by-id/entry">
 	<form id="main" method="post" action="">
 		<div id="head">
@@ -27,7 +29,15 @@
 
 			<div id="actions">
 				<a href="{$root}/process/{$gist-id}/{$sha1}" class="process">Process</a>
-				<input type="submit" name="action[update-gist]" value="Save" />
+
+				<xsl:choose>
+					<xsl:when test="$owner">
+						<input type="submit" name="action[update-gist]" value="Save" />
+					</xsl:when>
+					<xsl:otherwise>
+						<input type="submit" name="action[fork-gist]" value="Fork" />
+					</xsl:otherwise>
+				</xsl:choose>
 			</div>
 		</div>
 
@@ -69,14 +79,24 @@
 	<div>
 		<div class="meta">
 			<h5><xsl:value-of select="filename" /></h5>
-			<ul>
-				<xsl:apply-templates select="/data/files-by-revision/entry" mode="list">
-					<xsl:with-param name="current" select="filename" />
-				</xsl:apply-templates>
-			</ul>
+
+			<xsl:if test="count(/data/files-by-revision/entry) &gt; 2">
+				<ul>
+					<xsl:apply-templates select="/data/files-by-revision/entry" mode="list">
+						<xsl:with-param name="current" select="filename" />
+					</xsl:apply-templates>
+				</ul>
+			</xsl:if>
 		</div>
 
-		<textarea name="files[{filename}]"><xsl:value-of select="content" /></textarea>
+		<xsl:choose>
+			<xsl:when test="$owner">
+				<textarea name="files[{filename}]"><xsl:value-of select="content" /></textarea>
+			</xsl:when>
+			<xsl:otherwise>
+				<pre><xsl:value-of select="content" /></pre>
+			</xsl:otherwise>
+		</xsl:choose>
 	</div>
 </xsl:template>
 

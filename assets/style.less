@@ -1,16 +1,4 @@
 
-
-@cols: 12;
-@span: 60px;
-@gutter: 20px;
-
-.container(@n: @cols) { width: @n * (@span + @gutter); margin: 0 auto; overflow: hidden; }
-.cols(@n; @pad: 0) {
-	width: (@n * @span) + (@n -1) * @gutter - @pad; 
-	float: left; display: block; margin-right: @gutter; 
-}
-
-
 @orange: #ff6400;
 @yellow: #ffd02e;
 @black: #181B1f;
@@ -24,6 +12,9 @@ html {
 a { color: @yellow; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+pre { float: left; clear: both; width: 100%; overflow: scroll; padding: 5px; background: @white; color: @black; }
+
+
 
 .button() { 
 	font-family: 'Droid Sans'; font-size: 14px; color: #fff; font-weight: bold; 
@@ -36,7 +27,7 @@ a:hover { text-decoration: underline; }
 #header {
 	background: #000; overflow: hidden; margin-bottom: 1em;
 
-	>div { .container(); margin: .5em auto; }
+	>div { width: 90%; margin: .5em auto; }
 	h1 { float: left; padding: .5em 0; }
 
 	ul { float: right; }
@@ -47,20 +38,20 @@ a:hover { text-decoration: underline; }
 }
 
 
-#main { .container(); }
+#main { width: 90%; margin: 0 auto; }
 
 #head {
 	width: 100%; overflow: hidden; margin: 1em 0;
 
 	h2 { float: left; }
-	#actions { .cols(2); margin: 0; float: right; text-align: right; }
+	#actions { float: right; text-align: right; }
 	#actions input { .button(); margin-left: 1em; }
 }
 
 #files {
-	.cols(10);
+	float: left; width: 85%;
 
-	>div { .cols(5); }
+	>div { width: 49%; float: left; margin-right: 2%; }
 	>div:last-child { margin: 0; }
 
 	.meta { position: relative; }
@@ -71,11 +62,11 @@ a:hover { text-decoration: underline; }
 
 	h5:hover +ul, ul:hover { display: block; }
 
-	textarea { .cols(5; 10px); height: 30em; border: 1px solid lighten(@black, 50%); padding: 5px; }
+	textarea { width: 100%; height: 30em; border: 1px solid lighten(@black, 50%); padding: 5px; }
 }
 
 #meta {
-	.cols(2; -20px); margin: 3em 0 0;
+	float: right; width: 13%; margin: 3em 0 0;
 
 	>div { margin-bottom: 1.5em; }
 
@@ -93,8 +84,6 @@ a:hover { text-decoration: underline; }
 
 html.new {
 	#files { width: 100%; }
-	#files >div { .cols(6; -10px); }
-	#files >div:last-child { margin: 0; }
-
-	#files textarea { width: 100%; }
+	#files >div { width: 48.5%; }
 }
+

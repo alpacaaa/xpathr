@@ -10,6 +10,7 @@
 	indent="yes" />
 
 <xsl:param name="sha1" select="''" />
+<xsl:param name="github-user" select="''" />
 
 <xsl:template match="/">
 
