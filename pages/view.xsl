@@ -35,7 +35,13 @@
 						<input type="submit" name="action[update-gist]" value="Save" />
 					</xsl:when>
 					<xsl:otherwise>
-						<input type="submit" name="action[fork-gist]" value="Fork" />
+						<xsl:if test="$github-user">
+							<input type="submit" name="action[fork-gist]" value="Fork" />
+						</xsl:if>
+
+						<xsl:if test="$github-user = ''">
+							<a href="{$root}/authenticate">Login</a> to fork
+						</xsl:if>
 					</xsl:otherwise>
 				</xsl:choose>
 			</div>
@@ -49,7 +55,7 @@
 		<div id="meta">
 			<div id="user">
 				<img src="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png" />
-				<a href="#user">
+				<a href="https://gist.github.com/{user}">
 					<xsl:value-of select="user" />
 				</a>
 			</div>
@@ -142,7 +148,7 @@
 
 <xsl:template match="revisions-list/revision" >
 	<li>
-		<xsl:if test="$sha1 = @version">
+		<xsl:if test="$sha1 = @version or ($sha1 = '' and position() = 1)">
 			<xsl:attribute name="class">current</xsl:attribute>
 		</xsl:if>
 

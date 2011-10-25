@@ -10,18 +10,51 @@ a {
   text-decoration:none;
 }
 a:hover { text-decoration:underline; }
-#main {
-  width:960px;
-  margin:0 auto;
+pre {
+  float:left;
+  clear:both;
+  width:100%;
+  overflow:scroll;
+  padding:5px;
+  background:#f7f7f7;
+  color:#181b1f;
+}
+#header {
+  background:#000000;
   overflow:hidden;
+  margin-bottom:1em;
+}
+#header >div {
+  width:90%;
+  margin:.5em auto;
+}
+#header h1 {
+  float:left;
+  padding:.5em 0;
+}
+#header ul { float:right; }
+#header ul li { float:left; }
+#header li a {
+  color:#dddddd;
+  display:block;
+  padding:.5em;
+}
+#header li.login a { font-weight:bold; }
+#main {
+  width:90%;
+  margin:0 auto;
 }
 #head {
   width:100%;
   overflow:hidden;
-  margin:1em 0 2em;
+  margin:1em 0;
 }
 #head h2 { float:left; }
-#head #actions { float:right; }
+#head #actions {
+  float:right;
+  text-align:right;
+}
+#head #actions >*:first-child { margin-right:1em; }
 #head #actions input {
   font-family:'Droid Sans';
   font-size:14px;
@@ -31,20 +64,16 @@ a:hover { text-decoration:underline; }
   padding:4px;
   border:0 none;
   cursor:pointer;
-  margin-left:1em;
 }
 #head #actions input:hover { background:#ff8333; }
 #files {
-  width:780px;
   float:left;
-  display:block;
-  margin-right:20px;
+  width:85%;
 }
 #files >div {
-  width:380px;
+  width:49%;
   float:left;
-  display:block;
-  margin-right:20px;
+  margin-right:2%;
 }
 #files >div:last-child { margin:0; }
 #files .meta { position:relative; }
@@ -54,7 +83,7 @@ a:hover { text-decoration:underline; }
   float:left;
   font-weight:bold;
   color:#222222;
-  cursor:pointer;
+  cursor:default;
 }
 #files ul {
   display:none;
@@ -67,26 +96,22 @@ a:hover { text-decoration:underline; }
 #files li a { color:#444444; }
 #files h5:hover +ul, #files ul:hover { display:block; }
 #files textarea {
-  width:370px;
-  float:left;
-  display:block;
-  margin-right:20px;
+  width:100%;
   height:30em;
   border:1px solid #8e99a8;
   padding:5px;
 }
 #meta {
-  width:160px;
-  float:left;
-  display:block;
-  margin-right:20px;
-  margin:0;
+  float:right;
+  width:13%;
+  margin:3em 0 0;
 }
 #meta >div { margin-bottom:1.5em; }
 #meta #user {
   overflow:hidden;
   padding:10px;
   background:#2e343c;
+  margin-top:-1px;
 }
 #meta #user img {
   width:30px;
@@ -100,3 +125,6 @@ a:hover { text-decoration:underline; }
   color:#f7f7f7;
 }
 #meta h4 { font-weight:bold; }
+#meta #revisions .current { font-weight:bold; }
+html.new #files { width:100%; }
+html.new #files >div { width:48.5%; }
