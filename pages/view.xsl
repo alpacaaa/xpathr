@@ -45,6 +45,8 @@
 					</xsl:otherwise>
 				</xsl:choose>
 			</div>
+
+			<xsl:apply-templates select="/data/events/update-gist" />
 		</div>
 
 		<div id="files">
@@ -97,7 +99,15 @@
 
 		<xsl:choose>
 			<xsl:when test="$owner">
-				<textarea name="files[{filename}]"><xsl:value-of select="content" /></textarea>
+				<xsl:variable name="post" 
+				select="/data/events/update-gist/data/item[@key = 'files']/item[@key = current()/filename]"></xsl:variable>
+
+				<xsl:variable name="value">
+					<xsl:if test="$post"><xsl:value-of select="$post" /></xsl:if>
+					<xsl:if test="not($post)"><xsl:value-of select="content" /></xsl:if>
+				</xsl:variable>
+
+				<textarea name="files[{filename}]"><xsl:value-of select="$value" /></textarea>
 			</xsl:when>
 			<xsl:otherwise>
 				<pre><xsl:value-of select="content" /></pre>
@@ -164,6 +174,14 @@
 			<xsl:value-of select="@user" />
 		</a>
 	</li>
+</xsl:template>
+
+
+
+<xsl:template match="events/update-gist">
+	<div class="error">
+		<xsl:value-of select="message" />
+	</div>
 </xsl:template>
 
 </xsl:stylesheet>
