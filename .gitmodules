@@ -22,3 +22,9 @@
 [submodule "extensions/xssfilter"]
 	path = extensions/xssfilter
 	url = git://github.com/symphonycms/xssfilter.git
+[submodule "extensions/githuboauth"]
+	path = extensions/githuboauth
+	url = git://github.com/symphony-dev/GitHubOAuth.git
+[submodule "extensions/xpathr"]
+	path = extensions/xpathr
+	url = git://github.com/alpacaaa/xpathr.git
