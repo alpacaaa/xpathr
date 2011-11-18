@@ -8,6 +8,11 @@
 		protected $last;
 		protected static $source;
 
+		public function __construct()
+		{
+			parent::__construct(Symphony::Engine());
+		}
+
 		public static function setSource($id)
 		{
 			self::$source = $id;
@@ -20,6 +25,8 @@
 
 		public function run($fields = null, $entry_id = null)
 		{
+			$post = $_POST;
+
 			if ($fields)
 			{
 				$_POST = array(
@@ -30,6 +37,7 @@
 			}
 
 			include(TOOLKIT . '/events/event.section.php');
+			$_POST = $post;
 
 			$this->last = $result;
 			return $result;
