@@ -28,3 +28,6 @@
 [submodule "extensions/xpathr"]
 	path = extensions/xpathr
 	url = git://github.com/alpacaaa/xpathr.git
+[submodule "workspace"]
+	path = workspace
+	url = git://github.com/alpacaaa/xpathr.git

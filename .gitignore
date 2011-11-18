@@ -3,7 +3,6 @@
 .DS_Store
 *config.php
 .htaccess
-workspace/
 manifest/
 *.esproj
 *~
