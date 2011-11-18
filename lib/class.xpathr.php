@@ -257,4 +257,34 @@
 
 
 
-	class XpathrException extends Exception { }
+	class XpathrException extends Exception {
+		public function asNode($node = 'xpathr', $data = array())
+		{
+			$xml = new XMLElement($node);
+			$xml->appendChild(
+				new XMLElement('message', $this->getMessage())
+			);
+
+			if (!$data) return $xml;
+
+			$data = General::array_map_recursive('htmlentities', $data);
+
+			$post = new XMLElement('data');
+			self::buildDataNode($post, $data);
+			$xml->appendChild($post);
+
+			return $xml;
+		}
+
+		protected static function buildDataNode(XMLElement $node, $data = array())
+		{
+			foreach ($data as $k => $v)
+			{
+				$item = new XMLElement('item', null, array('key' => $k));
+				if (is_array($v)) self::buildDataNode($item, $v);
+				else $item->setValue($v);
+
+				$node->appendChild($item);
+			}
+		}
+	}

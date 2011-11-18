@@ -65,7 +65,13 @@
 			$params  = Symphony::Engine()->Page()->_param;
 			$id = $params['gist-id'];
 
-			$id = Xpathr::updateGist($id, $options);
-			if ($id) redirect(URL. '/view/'. $id. '?update');
+			try {
+				$id = Xpathr::updateGist($id, $options);
+				if ($id) redirect(URL. '/view/'. $id. '?update');
+			}
+			catch (XpathrException $ex)
+			{
+				return $ex->asNode(self::ROOTELEMENT, $options);
+			}
 		}
 	}
