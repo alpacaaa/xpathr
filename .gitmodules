@@ -1,0 +1,3 @@
+[submodule "assets/ui"]
+	path = assets/ui
+	url = git://github.com/bauhouse/xpathr.git
