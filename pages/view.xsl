@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:import href="../utilities/master.xsl" />
+<xsl:import href="../utilities/xpathr.xsl" />
 
 <xsl:param name="url-f1" select="'master.xml'" />
 <xsl:param name="url-f2" select="'master.xsl'" />
