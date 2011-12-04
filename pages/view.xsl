@@ -57,7 +57,7 @@
 	</xsl:choose>
 </xsl:template>
 
-<xsl:variable name="owner" select="/data/gist-by-id/entry/user"></xsl:variable>
+<xsl:variable name="owner" select="$github-user = /data/gist-by-id/entry/user"></xsl:variable>
 
 <xsl:template name="actions">
 	<xsl:choose>
