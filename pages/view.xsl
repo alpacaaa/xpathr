@@ -70,7 +70,7 @@
 			</xsl:if>
 
 			<xsl:if test="$github-user = ''">
-				<a href="{$root}/authenticate">Login</a> to fork
+				<span class="authenticate"><a href="{$root}/authenticate">Login</a> to fork</span>
 			</xsl:if>
 		</xsl:otherwise>
 	</xsl:choose>
