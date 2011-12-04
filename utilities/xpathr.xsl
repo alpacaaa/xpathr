@@ -36,6 +36,7 @@
 				</div>
 			</div>
 			<xsl:apply-templates select="data" mode="xpathr" />
+			<xsl:call-template name="help-panel" />
 			<xsl:call-template name="codemirror" />
 			<script src="{$ui-assets}js/jquery.min.js"></script>
 			<script src="{$ui-assets}js/xpathr.js"></script>
@@ -133,6 +134,24 @@
 		<li><a href="{$root}/authenticate">Login</a></li>
 	</xsl:if>
 </xsl:template>
+
+<xsl:template name="help-panel">
+	<div id="help">
+		<div id="content">
+			<xsl:apply-templates select="data/gist-by-id/entry" mode="meta" />
+			<h1>XPathr</h1>
+			<p>XPathr is an open source collaborative XSLT debugging tool developed with <a href="http://symphony-cms.com/">Symphony</a>.</p>
+			<p>If you want to get involved to help make XPathr better (or perhaps fix a bug you've found), please <a href="http://github.com/alpacaaa/xpathr">fork XPathr on github</a> and send a pull request.</p>
+			<h2>Created by</h2>
+			<ul>
+				<li><a href="http://symphony-cms.com/get-involved/member/alpacaaa/">Marco Sampellegrini</a></li>
+				<li><a href="http://symphony-cms.com/get-involved/member/bauhouse/">Stephen Bau</a></li>
+			</ul>
+		</div>
+	</div>
+</xsl:template>
+
+<xsl:template match="gist-by-id/entry" mode="meta" />
 
 <xsl:template name="codemirror">
 	<script>

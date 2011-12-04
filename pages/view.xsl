@@ -76,6 +76,33 @@
 	</xsl:choose>
 </xsl:template>
 
+<xsl:template match="gist-by-id/entry" mode="meta">
+	<div id="meta">
+		<div id="user">
+			<img src="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png" />
+			<a href="https://gist.github.com/{user}">
+				<xsl:value-of select="user" />
+			</a>
+		</div>
+
+		<div id="revisions">
+			<h4>Revisions</h4>
+			<ul>
+				<xsl:apply-templates select="revisions-list/revision" />
+			</ul>
+		</div>
+
+		<xsl:if test="forks-list/fork">
+			<div id="forks">
+				<h4>Forks</h4>
+				<ul>
+					<xsl:apply-templates select="forks-list/fork" />
+				</ul>
+			</div>
+		</xsl:if>
+	</div>
+</xsl:template>
+
 <!-- /end my revisions -->
 
 <xsl:template match="data">
