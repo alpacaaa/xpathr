@@ -4,6 +4,32 @@
 
 <xsl:import href="../utilities/xpathr.xsl" />
 
+<xsl:template name="bin">
+	<div id="bin" class="stretch">
+		<div id="source" class="binview stretch">
+			<div class="code stretch result">
+				<div class="label"><p><strong>Result</strong></p></div>
+				<xsl:apply-templates select="process-gist-by-id/*" />
+			</div>
+		</div>
+	</div>
+</xsl:template>
+
+<xsl:template name="codemirror">
+	<script>
+		var result_editor = CodeMirror.fromTextArea(document.getElementById("result"));
+	</script>
+</xsl:template>
+
+<xsl:template name="buttons">
+	<a class="tab button btn-code group left" accesskey="1" href="{$root}/view/{$gist-id}/">Code</a>
+	<xsl:apply-templates select="params/gist-id" mode="process" />
+</xsl:template>
+
+<xsl:template match="params/gist-id" mode="process">
+	<a class="tab button btn-result group right" accesskey="3" href="{$root}/process/{$gist-id}/">Result</a>
+</xsl:template>
+
 <xsl:template match="data">
 	<div id="main">
 
@@ -31,9 +57,7 @@
 
 
 <xsl:template match="process-gist-by-id/result">
-	<pre>
-		<xsl:value-of select="text()" />
-	</pre>
+	<textarea id="result" name="result" cols="50" rows="20"><xsl:value-of select="text()" /></textarea>
 </xsl:template>
 
 <xsl:template match="process-gist-by-id/message">

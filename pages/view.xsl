@@ -7,12 +7,81 @@
 <xsl:param name="url-f1" select="'master.xml'" />
 <xsl:param name="url-f2" select="'master.xsl'" />
 
+<!-- my revisions -->
+
+<xsl:template name="xml-editor">
+	<xsl:apply-templates select="files-by-revision/entry[filename/text() = $url-f1]" mode="view-xml" />
+</xsl:template>
+
+<xsl:template name="xslt-editor">
+	<xsl:apply-templates select="files-by-revision/entry[filename/text() = $url-f2]" mode="view-xslt" />
+</xsl:template>
+
+<xsl:template match="files-by-revision/entry" mode="view-xml">
+	<div class="code stretch xml">
+		<xsl:call-template name="editor-textarea">
+			<xsl:with-param name="label" select="'XML'" />
+			<xsl:with-param name="type" select="'xml'" />
+		</xsl:call-template>
+	</div>
+</xsl:template>
+
+<xsl:template match="files-by-revision/entry" mode="view-xslt">
+	<div class="code stretch xslt">
+		<xsl:call-template name="editor-textarea">
+			<xsl:with-param name="label" select="'XSLT'" />
+			<xsl:with-param name="type" select="'xslt'" />
+		</xsl:call-template>
+	</div>
+</xsl:template>
+
+<xsl:template name="editor-textarea">
+	<xsl:param name="label" />
+	<xsl:param name="type" />
+	<xsl:choose>
+		<xsl:when test="$owner">
+			<xsl:variable name="post" 
+			select="/data/events/update-gist/data/item[@key = 'files']/item[@key = current()/filename]"></xsl:variable>
+
+			<xsl:variable name="value">
+				<xsl:if test="$post"><xsl:value-of select="$post" /></xsl:if>
+				<xsl:if test="not($post)"><xsl:value-of select="content" /></xsl:if>
+			</xsl:variable>
+			<div class="label"><p><strong><xsl:value-of select="filename" /></strong></p></div>
+			<textarea id="{$type}" name="files[{filename}]" cols="50" rows="20"><xsl:value-of select="$value" /></textarea>
+		</xsl:when>
+		<xsl:otherwise>
+			<div class="label"><p><strong>XSLT</strong></p></div>
+			<textarea id="{$type}" name="files[{filename}]" cols="50" rows="20"><xsl:value-of select="content" /></textarea>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:variable name="owner" select="/data/gist-by-id/entry/user"></xsl:variable>
+
+<xsl:template name="actions">
+	<xsl:choose>
+		<xsl:when test="$owner">
+			<input type="submit" name="action[update-gist]" value="Save" />
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:if test="$github-user">
+				<input type="submit" name="action[fork-gist]" value="Fork" />
+			</xsl:if>
+
+			<xsl:if test="$github-user = ''">
+				<a href="{$root}/authenticate">Login</a> to fork
+			</xsl:if>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<!-- /end my revisions -->
+
 <xsl:template match="data">
 	<xsl:apply-templates select="gist-by-id/entry" />
 </xsl:template>
 
-
-<xsl:variable name="owner" select="$github-user = /data/gist-by-id/entry/user"></xsl:variable>
 
 <xsl:template match="gist-by-id/entry">
 	<form id="main" method="post" action="">
