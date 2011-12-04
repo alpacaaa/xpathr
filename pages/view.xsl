@@ -51,7 +51,7 @@
 			<textarea id="{$type}" name="files[{filename}]" cols="50" rows="20"><xsl:value-of select="$value" /></textarea>
 		</xsl:when>
 		<xsl:otherwise>
-			<div class="label"><p><strong>XSLT</strong></p></div>
+			<div class="label"><p><strong><xsl:value-of select="$label" /></strong></p></div>
 			<textarea id="{$type}" name="files[{filename}]" cols="50" rows="20"><xsl:value-of select="content" /></textarea>
 		</xsl:otherwise>
 	</xsl:choose>
