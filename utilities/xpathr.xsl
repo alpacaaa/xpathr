@@ -100,7 +100,7 @@
 <xsl:template name="xslt-editor">
 	<div class="code stretch xslt">
 		<div class="label"><p><strong>XSLT</strong></p></div>
-		<textarea id="xslt" name="xslt" cols="50" rows="20"><xsl:call-template name="xslt" /></textarea>
+		<textarea id="xslt" name="xsl" cols="50" rows="20"><xsl:call-template name="xslt" /></textarea>
 	</div>
 </xsl:template>
 
