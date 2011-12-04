@@ -22,12 +22,12 @@
 </xsl:template>
 
 <xsl:template name="buttons">
-	<a class="tab button btn-code group left" accesskey="1" href="{$root}/view/{$gist-id}/">Code</a>
+	<a class="tab button left right gap" accesskey="1" href="{$root}/view/{$gist-id}/" id="btn-code">Code</a>
 	<xsl:apply-templates select="params/gist-id" mode="process" />
 </xsl:template>
 
 <xsl:template match="params/gist-id" mode="process">
-	<a class="tab button btn-result group right" accesskey="3" href="{$root}/process/{$gist-id}/">Result</a>
+	<a class="tab button left right current" accesskey="3" href="{$root}/process/{$gist-id}/" id="btn-result">Result</a>
 </xsl:template>
 
 <xsl:template match="data">

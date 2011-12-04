@@ -64,13 +64,13 @@
 </xsl:template>
 
 <xsl:template name="buttons">
-	<a class="tab button btn-xml group left" accesskey="1" href="#xml">XML</a>
-	<a class="tab button btn-xslt group gap right" accesskey="2" href="#xslt">XSLT</a>
+	<a class="tab button group left" accesskey="1" href="#xml" id="btn-xml">XML</a>
+	<a class="tab button group gap right" accesskey="2" href="#xslt" id="btn-xslt">XSLT</a>
 	<xsl:apply-templates select="params/gist-id" mode="process" />
 </xsl:template>
 
 <xsl:template match="params/gist-id" mode="process">
-	<a class="tab button btn-result left right" accesskey="3" href="{$root}/process/{$gist-id}/">Result</a>
+	<a class="tab button btn-result left right" accesskey="3" href="{$root}/process/{$gist-id}/" id="btn-result">Result</a>
 </xsl:template>
 
 <xsl:template name="actions" />
