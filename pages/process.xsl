@@ -79,7 +79,7 @@
 </xsl:template>
 
 <xsl:template match="process-gist-by-id/errors">
-	<ul>
+	<ul class="errors">
 		<xsl:apply-templates select="error" />
 	</ul>
 </xsl:template>
