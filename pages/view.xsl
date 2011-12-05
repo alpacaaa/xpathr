@@ -47,7 +47,15 @@
 				<xsl:if test="$post"><xsl:value-of select="$post" /></xsl:if>
 				<xsl:if test="not($post)"><xsl:value-of select="content" /></xsl:if>
 			</xsl:variable>
-			<div class="label"><p><strong><xsl:value-of select="filename" /></strong></p></div>
+			<div class="label">
+				<p>
+					<strong><xsl:value-of select="$label" /></strong>
+					<span>
+						<a href="https://gist.github.com/{$gist-id}">gist: <xsl:value-of select="$gist-id" /></a>
+						<a href="https://gist.github.com/{$gist-id}#file_{filename}"><xsl:value-of select="filename" /></a>
+					</span>
+				</p>
+			</div>
 			<textarea id="{$type}" name="files[{filename}]" cols="50" rows="20"><xsl:value-of select="$value" /></textarea>
 		</xsl:when>
 		<xsl:otherwise>
