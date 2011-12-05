@@ -31,7 +31,7 @@
 				<div class="help">
 					<ul class="nav">
 						<xsl:apply-templates select="data/events/github" />
-						<li><a href="#help">Help</a></li>
+						<li id="btn-about"><a href="#help">About</a></li>
 					</ul>
 				</div>
 			</div>
