@@ -7,12 +7,7 @@
 
 <xsl:template match="gist-by-id/entry" mode="meta">
 	<div id="meta">
-		<div id="user">
-			<a href="https://gist.github.com/{user}">
-				<img src="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png" />
-				<span class="username"><xsl:value-of select="user" /></span>
-			</a>
-		</div>
+		<xsl:call-template name="user" />
 
 		<xsl:if test="count(/data/files-by-revision/entry) &gt; 2">
 			<div id="files">

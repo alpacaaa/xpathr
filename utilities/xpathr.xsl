@@ -152,16 +152,25 @@
 </xsl:template>
 
 <xsl:template name="meta">
-	<xsl:if test="$github-user">
-		<div id="meta">
-			<div id="user">
-				<a href="https://gist.github.com/{$github-user}">
-					<img src="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png" />
-					<span class="username"><xsl:value-of select="$github-user" /></span>
-				</a>
-			</div>
-		</div>
-	</xsl:if>
+	<div id="meta">
+		<xsl:call-template name="user" />
+	</div>
+</xsl:template>
+
+<xsl:template name="user">
+	<div id="user">
+		<a href="https://gist.github.com/{$github-user}">
+			<img src="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png" />
+			<span class="username">
+				<xsl:choose>
+					<xsl:when test="$github-user != ''">
+						<xsl:value-of select="$github-user" />
+					</xsl:when>
+					<xsl:otherwise>Anonymous</xsl:otherwise>
+				</xsl:choose>
+			</span>
+		</a>
+	</div>
 </xsl:template>
 
 <xsl:template name="codemirror">
