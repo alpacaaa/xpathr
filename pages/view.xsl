@@ -79,9 +79,9 @@
 <xsl:template match="gist-by-id/entry" mode="meta">
 	<div id="meta">
 		<div id="user">
-			<img src="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png" />
 			<a href="https://gist.github.com/{user}">
-				<xsl:value-of select="user" />
+				<img src="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png" />
+				<span class="username"><xsl:value-of select="user" /></span>
 			</a>
 		</div>
 

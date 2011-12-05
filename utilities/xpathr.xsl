@@ -31,7 +31,7 @@
 				<div class="help">
 					<ul class="menu">
 						<xsl:apply-templates select="data/events/github" />
-						<li><a href="{$ui-assets}/help/index.html">Help</a></li>
+						<li><a href="#help">Help</a></li>
 					</ul>
 				</div>
 			</div>
