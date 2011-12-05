@@ -11,7 +11,14 @@
 	<div id="bin" class="stretch">
 		<div id="source" class="binview stretch">
 			<div class="code stretch result">
-				<div class="label"><p><strong>Result</strong></p></div>
+				<div class="label">
+					<p>
+						<strong>Result</strong>
+						<span>
+							<a href="https://gist.github.com/{$gist-id}">gist: <xsl:value-of select="$gist-id" /></a>
+						</span>
+					</p>
+				</div>
 				<xsl:apply-templates select="process-gist-by-id/*" />
 			</div>
 		</div>
