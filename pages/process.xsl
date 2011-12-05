@@ -3,6 +3,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:import href="../utilities/xpathr.xsl" />
+<xsl:import href="../utilities/meta.xsl" />
 
 <xsl:template name="bin">
 	<div id="bin" class="stretch">
@@ -54,7 +55,9 @@
 
 </xsl:template>
 
-
+<xsl:template name="meta">
+	<xsl:apply-templates select="data/gist-by-id/entry" mode="meta" />
+</xsl:template>
 
 <xsl:template match="process-gist-by-id/result">
 	<textarea id="result" name="result" cols="50" rows="20"><xsl:value-of select="text()" /></textarea>
