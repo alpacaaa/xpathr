@@ -29,7 +29,7 @@
 			<div id="header">
 				<h1><a href="{$root}/">XPathr</a></h1>
 				<div class="help">
-					<ul class="menu">
+					<ul class="nav">
 						<xsl:apply-templates select="data/events/github" />
 						<li><a href="#help">Help</a></li>
 					</ul>
@@ -138,7 +138,7 @@
 <xsl:template name="help-panel">
 	<div id="help">
 		<div id="content">
-			<xsl:apply-templates select="data/gist-by-id/entry" mode="meta" />
+			<xsl:call-template name="meta" />
 			<h1>XPathr</h1>
 			<p>XPathr is an open source collaborative XSLT debugging tool developed with <a href="http://symphony-cms.com/">Symphony</a>.</p>
 			<p>If you want to get involved to help make XPathr better (or perhaps fix a bug you've found), please <a href="http://github.com/alpacaaa/xpathr">fork XPathr on github</a> and send a pull request.</p>
@@ -151,7 +151,18 @@
 	</div>
 </xsl:template>
 
-<xsl:template match="gist-by-id/entry" mode="meta" />
+<xsl:template name="meta">
+	<xsl:if test="$github-user">
+		<div id="meta">
+			<div id="user">
+				<a href="https://gist.github.com/{$github-user}">
+					<img src="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png" />
+					<span class="username"><xsl:value-of select="$github-user" /></span>
+				</a>
+			</div>
+		</div>
+	</xsl:if>
+</xsl:template>
 
 <xsl:template name="codemirror">
 	<script>

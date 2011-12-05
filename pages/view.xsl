@@ -84,6 +84,10 @@
 	</xsl:choose>
 </xsl:template>
 
+<xsl:template name="meta">
+	<xsl:apply-templates select="data/gist-by-id/entry" mode="meta" />
+</xsl:template>
+
 <xsl:template match="gist-by-id/entry" mode="meta">
 	<div id="meta">
 		<div id="user">
@@ -93,9 +97,20 @@
 			</a>
 		</div>
 
+		<xsl:if test="count(/data/files-by-revision/entry) &gt; 2">
+			<div id="files">
+				<h4>XSLT Files</h4>
+				<ul class="menu">
+					<xsl:apply-templates select="/data/files-by-revision/entry" mode="list">
+						<xsl:with-param name="current" select="$url-f2" />
+					</xsl:apply-templates>
+				</ul>
+			</div>
+		</xsl:if>
+
 		<div id="revisions">
 			<h4>Revisions</h4>
-			<ul>
+			<ul class="menu">
 				<xsl:apply-templates select="revisions-list/revision" />
 			</ul>
 		</div>
@@ -103,7 +118,7 @@
 		<xsl:if test="forks-list/fork">
 			<div id="forks">
 				<h4>Forks</h4>
-				<ul>
+				<ul class="menu">
 					<xsl:apply-templates select="forks-list/fork" />
 				</ul>
 			</div>
@@ -224,8 +239,11 @@
 <xsl:template match="files-by-revision/entry" mode="list">
 	<xsl:param name="current" />
 
-	<xsl:if test="filename != $url-f1 and filename != $url-f2">
+	<xsl:if test="filename != $url-f1">
 		<li>
+			<xsl:if test="filename = $url-f2">
+				<xsl:attribute name="class">current</xsl:attribute>
+			</xsl:if>
 			<a>
 				<xsl:attribute name="href">
 					<xsl:variable name="s1">
