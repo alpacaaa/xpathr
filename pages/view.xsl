@@ -34,31 +34,23 @@
 <xsl:template name="editor-textarea">
 	<xsl:param name="label" />
 	<xsl:param name="type" />
-	<xsl:choose>
-		<xsl:when test="$owner">
-			<xsl:variable name="post" 
-			select="/data/events/update-gist/data/item[@key = 'files']/item[@key = current()/filename]"></xsl:variable>
+	<xsl:variable name="post" 
+	select="/data/events/update-gist/data/item[@key = 'files']/item[@key = current()/filename]" />
 
-			<xsl:variable name="value">
-				<xsl:if test="$post"><xsl:value-of select="$post" /></xsl:if>
-				<xsl:if test="not($post)"><xsl:value-of select="content" /></xsl:if>
-			</xsl:variable>
-			<div class="label">
-				<p>
-					<strong><xsl:value-of select="$label" /></strong>
-					<span>
-						<a href="https://gist.github.com/{$gist-id}">gist: <xsl:value-of select="$gist-id" /></a>
-						<a href="https://gist.github.com/{$gist-id}#file_{filename}"><xsl:value-of select="filename" /></a>
-					</span>
-				</p>
-			</div>
-			<textarea id="{$type}" name="files[{filename}]" cols="50" rows="20"><xsl:value-of select="$value" /></textarea>
-		</xsl:when>
-		<xsl:otherwise>
-			<div class="label"><p><strong><xsl:value-of select="$label" /></strong></p></div>
-			<textarea id="{$type}" name="files[{filename}]" cols="50" rows="20"><xsl:value-of select="content" /></textarea>
-		</xsl:otherwise>
-	</xsl:choose>
+	<xsl:variable name="value">
+		<xsl:if test="$post"><xsl:value-of select="$post" /></xsl:if>
+		<xsl:if test="not($post)"><xsl:value-of select="content" /></xsl:if>
+	</xsl:variable>
+	<div class="label">
+		<p>
+			<strong><xsl:value-of select="$label" /></strong>
+			<span>
+				<a href="https://gist.github.com/{$gist-id}">gist: <xsl:value-of select="$gist-id" /></a>
+				<a href="https://gist.github.com/{$gist-id}#file_{filename}"><xsl:value-of select="filename" /></a>
+			</span>
+		</p>
+	</div>
+	<textarea id="{$type}" name="files[{filename}]" cols="50" rows="20"><xsl:value-of select="$value" /></textarea>
 </xsl:template>
 
 <xsl:variable name="owner" select="$github-user = /data/gist-by-id/entry/user"></xsl:variable>
