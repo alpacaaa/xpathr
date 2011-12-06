@@ -5,6 +5,20 @@
 <xsl:import href="../utilities/xpathr.xsl" />
 <xsl:import href="../utilities/meta.xsl" />
 
+<xsl:template match="params/gist-id" mode="process">
+	<xsl:param name="version">
+		<xsl:choose>
+			<xsl:when test="$sha1 = ''">
+				<xsl:value-of select="/data/gist-by-id/entry[1]/revisions-list/revision[1]/@version" />
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$sha1" />
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:param>
+	<a class="tab button btn-result left right" accesskey="3" href="{$root}/process/{$gist-id}/{$version}/" id="btn-result">Result</a>
+</xsl:template>
+
 <xsl:template name="xml-editor">
 	<xsl:apply-templates select="files-by-revision/entry[filename/text() = $url-f1]" mode="view-xml" />
 </xsl:template>
