@@ -173,6 +173,13 @@
 	</div>
 </xsl:template>
 
+<xsl:template name="gist-input-form">
+	<form id="gist-input" method="post" action="">
+		<input name="gist-id" type="text" />
+		<input name="action[view-gist]" type="submit" value="View" />
+	</form>
+</xsl:template>
+
 <xsl:template name="codemirror">
 	<script>
 		var xml_editor = CodeMirror.fromTextArea(document.getElementById("xml"));

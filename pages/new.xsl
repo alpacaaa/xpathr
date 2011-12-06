@@ -11,6 +11,7 @@
 <xsl:template name="meta">
 	<div id="meta">
 		<xsl:call-template name="user" />
+		<xsl:call-template name="gist-input-form" />
 		<xsl:apply-templates select="/data/gists-by-user" />
 	</div>
 </xsl:template>
