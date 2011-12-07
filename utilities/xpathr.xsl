@@ -175,8 +175,8 @@
 
 <xsl:template name="gist-input-form">
 	<form id="gist-input" method="post" action="">
-		<label>Gist ID</label>
-		<input name="gist-id" type="text" placeholder="Enter a Gist ID" />
+		<label>Gist</label>
+		<input name="gist-id" type="text" placeholder="Enter a Gist ID or URL" />
 		<input name="action[view-gist]" type="submit" value="View" />
 	</form>
 </xsl:template>
