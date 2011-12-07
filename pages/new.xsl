@@ -5,7 +5,7 @@
 <xsl:import href="../utilities/xpathr.xsl" />
 
 <xsl:template name="actions">
-	<input type="submit" name="action[create-gist]" value="Create" />
+	<input type="submit" name="action[create-gist]" value="Create Gist" />
 </xsl:template>
 
 <xsl:template name="meta">
