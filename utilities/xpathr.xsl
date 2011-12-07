@@ -131,7 +131,7 @@
 	</xsl:if>
 
 	<xsl:if test="@logged-in = 'no'">
-		<li><a href="{$root}/authenticate">Login</a></li>
+		<li><a href="{$root}/authenticate">Login via GitHub</a></li>
 	</xsl:if>
 </xsl:template>
 
