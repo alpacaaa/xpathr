@@ -140,8 +140,8 @@
 		<div id="content">
 			<xsl:call-template name="meta" />
 			<h1>XPathr</h1>
-			<p>XPathr is an open source collaborative XSLT debugging tool developed with <a href="http://symphony-cms.com/">Symphony</a>.</p>
-			<p>If you want to get involved to help make XPathr better (or perhaps fix a bug you've found), please <a href="http://github.com/alpacaaa/xpathr">fork XPathr on github</a> and send a pull request.</p>
+			<p>XPathr is an open source collaborative XSLT debugging tool developed with <a href="http://symphony-cms.com/">Symphony CMS</a> and the <a href="http://developer.github.com/v3/gists/">GitHub API</a> for sharing code snippets as <a href="https://gist.github.com/">gists</a>.</p>
+			<p>If you want to get involved to help make XPathr better (or perhaps fix a bug you've found), please <a href="http://github.com/alpacaaa/xpathr">fork XPathr on GitHub</a> and send a pull request.</p>
 			<h2>Created by</h2>
 			<ul>
 				<li><a href="http://symphony-cms.com/get-involved/member/alpacaaa/">Marco Sampellegrini</a></li>
