@@ -31,3 +31,9 @@
 [submodule "workspace"]
 	path = workspace
 	url = git://github.com/alpacaaa/xpathr.git
+[submodule "extensions/dump_db"]
+	path = extensions/dump_db
+	url = git://github.com/nils-werner/dump_db.git
+[submodule "extensions/html5_doctype"]
+	path = extensions/html5_doctype
+	url = git://github.com/domain7/html5_doctype.git
