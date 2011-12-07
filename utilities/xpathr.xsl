@@ -16,7 +16,6 @@
 <xsl:template match="/">
 	<html lang="en">
 		<head>
-			<meta charset="utf-8" />
 			<title>XPathr - Collaborative XSLT Development</title>
 			<link rel="stylesheet" href="{$ui-assets}codemirror/lib/codemirror.css" />
 			<link rel="stylesheet" href="{$ui-assets}codemirror/theme/default.css" />
