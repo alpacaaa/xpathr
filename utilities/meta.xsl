@@ -79,41 +79,41 @@
 <xsl:template match="files-by-revision/entry" mode="list">
 	<xsl:param name="current" />
 
-	<xsl:if test="filename != $url-f1">
-		<li>
-			<xsl:if test="filename = $url-f2">
-				<xsl:attribute name="class">current</xsl:attribute>
-			</xsl:if>
-			<a>
-				<xsl:attribute name="href">
-					<xsl:variable name="s1">
-						<xsl:if test="$current = $url-f1">f1</xsl:if>
-						<xsl:if test="$current = $url-f2">f2</xsl:if>
-					</xsl:variable>
+	<xsl:variable name="ext" select="substring(filename, string-length(filename) -3)" />
 
-					<xsl:variable name="s2">
-						<xsl:if test="$current = $url-f1">f2</xsl:if>
-						<xsl:if test="$current = $url-f2">f1</xsl:if>
-					</xsl:variable>
+	<li>
+		<xsl:if test="filename = $url-f1 or filename = $url-f2">
+			<xsl:attribute name="class">current</xsl:attribute>
+		</xsl:if>
+		<a>
+			<xsl:attribute name="href">
+				<xsl:variable name="s1">
+					<xsl:if test="$ext != '.xsl'">f1</xsl:if>
+					<xsl:if test="$ext = '.xsl'">f2</xsl:if>
+				</xsl:variable>
 
-					<xsl:variable name="other">
-						<xsl:if test="$current = $url-f1">
-							<xsl:value-of select="$url-f2" />
-						</xsl:if>
-						<xsl:if test="$current = $url-f2">
-							<xsl:value-of select="$url-f1" />
-						</xsl:if>
-					</xsl:variable>					
+				<xsl:variable name="s2">
+					<xsl:if test="$ext != '.xsl'">f2</xsl:if>
+					<xsl:if test="$ext = '.xsl'">f1</xsl:if>
+				</xsl:variable>
 
-					<xsl:value-of select="concat($root, '/view/', $gist-id, '/', $sha1, '?', $s1, '=', filename, '&amp;', $s2, '=', $other)" />
+				<xsl:variable name="other">
+					<xsl:if test="$ext != '.xsl'">
+						<xsl:value-of select="$url-f2" />
+					</xsl:if>
+					<xsl:if test="$ext = '.xsl'">
+						<xsl:value-of select="$url-f1" />
+					</xsl:if>
+				</xsl:variable>
 
-				</xsl:attribute>
+				<xsl:value-of select="concat($root, '/view/', $gist-id, '/', $sha1, '?', $s1, '=', filename, '&amp;', $s2, '=', $other)" />
+
+			</xsl:attribute>
 
 
-				<xsl:value-of select="filename" />
-			</a>
-		</li>
-	</xsl:if>
+			<xsl:value-of select="filename" />
+		</a>
+	</li>
 </xsl:template>
 
 <xsl:template match="revisions-list/revision" >

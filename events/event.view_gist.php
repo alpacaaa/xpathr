@@ -39,14 +39,20 @@
 
 		protected function __trigger(){
 			if(isset($_POST['gist-id'])) {
-				$gist_id = $_POST['gist-id'];
-				$gist_url = 'https://gist.github.com/';
-				
-				if(strpos($gist_id, $gist_url) !== false) {
-					$gist_id = str_replace($gist_url, '', $gist_id);
-				}
+				$gist_id = self::clean($_POST['gist-id']);
 				redirect(URL . '/view/' . $gist_id . '/');
 			}
 		}
 
+
+		protected static function clean($url)
+		{
+			if (strpos($url, '/') === false) return $url;
+
+			// get id from full url (`gist.github.com/...`)
+			$url = trim($url, '/');
+			$pos = strrpos($url, '/');
+
+			return substr($url, $pos +1);
+		}
 	}
