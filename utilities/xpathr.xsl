@@ -183,8 +183,8 @@
 
 <xsl:template name="codemirror">
 	<script>
-		var xml_editor = CodeMirror.fromTextArea(document.getElementById("xml"));
-		var xslt_editor = CodeMirror.fromTextArea(document.getElementById("xslt"));
+		var xml_editor = CodeMirror.fromTextArea(document.getElementById("xml"), {lineNumbers: true});
+		var xslt_editor = CodeMirror.fromTextArea(document.getElementById("xslt"), {lineNumbers: true});
 	</script>
 </xsl:template>
 

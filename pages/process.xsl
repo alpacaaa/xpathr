@@ -27,7 +27,7 @@
 
 <xsl:template name="codemirror">
 	<script>
-		var result_editor = CodeMirror.fromTextArea(document.getElementById("result"));
+		var result_editor = CodeMirror.fromTextArea(document.getElementById("result"), {lineNumbers: true});
 	</script>
 </xsl:template>
 
