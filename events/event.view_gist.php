@@ -38,7 +38,15 @@
 		}
 
 		protected function __trigger(){
-			if(isset($_POST['gist-id'])) redirect(URL . '/view/' . $_POST['gist-id'] . '/');
+			if(isset($_POST['gist-id'])) {
+				$gist_id = $_POST['gist-id'];
+				$gist_url = 'https://gist.github.com/';
+				
+				if(strpos($gist_id, $gist_url) !== false) {
+					$gist_id = str_replace($gist_url, '', $gist_id);
+				}
+				redirect(URL . '/view/' . $gist_id . '/');
+			}
 		}
 
 	}
