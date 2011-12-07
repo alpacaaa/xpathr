@@ -13,9 +13,7 @@
 			<div id="files">
 				<h4>XSLT Files</h4>
 				<ul class="menu">
-					<xsl:apply-templates select="/data/files-by-revision/entry" mode="list">
-						<xsl:with-param name="current" select="$url-f2" />
-					</xsl:apply-templates>
+					<xsl:apply-templates select="/data/files-by-revision/entry" mode="list" />
 				</ul>
 			</div>
 		</xsl:if>
@@ -77,8 +75,6 @@
 
 
 <xsl:template match="files-by-revision/entry" mode="list">
-	<xsl:param name="current" />
-
 	<xsl:variable name="ext" select="substring(filename, string-length(filename) -3)" />
 
 	<li>
