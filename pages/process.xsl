@@ -5,8 +5,6 @@
 <xsl:import href="../utilities/xpathr.xsl" />
 <xsl:import href="../utilities/meta.xsl" />
 
-<xsl:param name="url-f2" />
-
 <xsl:template name="bin">
 	<div id="bin" class="stretch">
 		<div id="source" class="binview stretch">

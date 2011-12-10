@@ -78,7 +78,7 @@
 	<xsl:variable name="ext" select="substring(filename, string-length(filename) -3)" />
 
 	<li>
-		<xsl:if test="filename = $url-f1 or filename = $url-f2">
+		<xsl:if test="(filename = $url-f1 or filename = $url-f2) and $current-page != 'process'">
 			<xsl:attribute name="class">current</xsl:attribute>
 		</xsl:if>
 		<a>
