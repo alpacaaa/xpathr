@@ -57,11 +57,11 @@
 			$update = Xpathr::needUpdate();
 
 			try {
+				include(TOOLKIT . '/data-sources/datasource.section.php');
+
 				/* Force update */
 				if ($update && !self::$run)
 					throw new FrontendPageNotFoundException();
-
-				include(TOOLKIT . '/data-sources/datasource.section.php');
 			}
 			catch(FrontendPageNotFoundException $e){
 				/* Grab gist from github! */
@@ -102,11 +102,12 @@
 
 						$changes = new XMLElement('changes', null, (array) $rev->change_status);
 						$node = new XMLElement('revision', null, $attributes);
-						
+
 						$node->appendChild($changes);
 						$list[] = $node->generate();
 					}
 
+					$param_pool['last-sha1'] = $data->history[0]->version;
 					$revisions_list = join("\n", $list);
 
 
@@ -145,6 +146,7 @@
 				$e->run($fields, $entry_id);
 
 				// run ds again
+				unset($param_pool['ds-gist-by-id']);
 				return $this->grab($param_pool);
 			}
 			catch(Exception $e){

@@ -260,7 +260,7 @@
 	class XpathrException extends Exception {
 		public function asNode($node = 'xpathr', $data = array())
 		{
-			$xml = new XMLElement($node);
+			$xml = new XMLElement($node, null, array('result' => 'error'));
 			$xml->appendChild(
 				new XMLElement('message', $this->getMessage())
 			);

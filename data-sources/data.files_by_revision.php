@@ -18,7 +18,7 @@
 		public $dsParamHTMLENCODE = 'yes';
 
 		public $dsParamFILTERS = array(
-				'8' => '{$ds-revision-by-sha1}',
+				'8' => '{$new-revision-id:$ds-revision-by-sha1}',
 		);
 
 		public $dsParamINCLUDEDELEMENTS = array(
@@ -50,6 +50,11 @@
 
 		public function allowEditorToParse(){
 			return false;
+		}
+
+		public static function alreadyRun()
+		{
+			self::$run = true;
 		}
 
 		public function grab(&$param_pool=NULL){

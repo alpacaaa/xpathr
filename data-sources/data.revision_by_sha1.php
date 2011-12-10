@@ -23,7 +23,7 @@
 		);
 
 		public $dsParamINCLUDEDELEMENTS = array(
-				'created-at'
+				'created-at', 'sha1'
 		);
 
 
@@ -57,11 +57,12 @@
 			$update = Xpathr::needUpdate();
 
 			try{
+				include(TOOLKIT . '/data-sources/datasource.section.php');
+
 				/* Force update */
 				if ($update && !self::$run)
 					throw new FrontendPageNotFoundException();
 
-				include(TOOLKIT . '/data-sources/datasource.section.php');
 			}
 			catch(FrontendPageNotFoundException $e){
 				if (self::$run)
@@ -75,6 +76,34 @@
 
 				if (isset($params['url']['sha1']))
 					$sha1 = $params['url']['sha1'];
+
+				// check if revision has already been saved
+				if (!$sha1 && isset($param_pool['last-sha1']))
+				{
+					$entries = $result->getChildren();
+					$entries = $entries[1];
+					$target  = '';
+
+					if (count($entries) > 0)
+					{
+						if (is_array($entries)) $e = $entries[0]->getChildren();
+						else $e = $entries->getChildren();
+
+						foreach ($e as $node)
+						{
+							if ($node->getName() == 'sha1')
+								$target = $node->getValue();
+						}
+					}
+
+					if ($target == $param_pool['last-sha1'])
+					{
+						if (class_exists('datasourcefiles_by_revision'))
+							datasourcefiles_by_revision::alreadyRun();
+
+						return $result;
+					}
+				}
 
 				try {
 					$data = Xpathr::getRevision($id, $sha1);
