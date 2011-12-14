@@ -11,7 +11,7 @@
 
 		<xsl:if test="count(/data/files-by-revision/entry) &gt; 2">
 			<div id="files">
-				<h4>XSLT Files</h4>
+				<h4>Files</h4>
 				<ul class="menu">
 					<xsl:apply-templates select="/data/files-by-revision/entry" mode="list" />
 				</ul>
