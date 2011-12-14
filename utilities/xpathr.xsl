@@ -16,7 +16,7 @@
 <xsl:template match="/">
 	<html lang="en">
 		<head>
-			<title>XPathr - Collaborative XSLT Development</title>
+			<title>xpathr - Collaborative XSLT Development</title>
 			<link rel="stylesheet" href="{$ui-assets}codemirror/lib/codemirror.css" />
 			<link rel="stylesheet" href="{$ui-assets}codemirror/theme/default.css" />
 			<link rel="stylesheet" href="{$ui-assets}css/xpathr.css" type="text/css" />
@@ -26,7 +26,7 @@
 		<!--[if lt IE 7 ]><body class="source ie6"><![endif]--> 
 		<!--[if !IE]><!--><body class="source"><!--<![endif]-->	 
 			<div id="header">
-				<h1><a href="{$root}/">XPathr</a></h1>
+				<h1><a href="{$root}/">xpathr</a></h1>
 				<div class="help">
 					<ul class="nav">
 						<xsl:apply-templates select="data/events/github" />
@@ -138,9 +138,9 @@
 	<div id="help">
 		<div id="content">
 			<xsl:call-template name="meta" />
-			<h1>XPathr</h1>
-			<p>XPathr is an open source collaborative XSLT debugging tool developed with <a href="http://symphony-cms.com/">Symphony CMS</a> and the <a href="http://developer.github.com/v3/gists/">GitHub API</a> for sharing code snippets as <a href="https://gist.github.com/">gists</a>.</p>
-			<p>If you want to get involved to help make XPathr better (or perhaps fix a bug you've found), please <a href="http://github.com/alpacaaa/xpathr">fork XPathr on GitHub</a> and send a pull request.</p>
+			<h1>xpathr</h1>
+			<p>xpathr is an open source collaborative XSLT debugging tool developed with <a href="http://symphony-cms.com/">Symphony CMS</a> and the <a href="http://developer.github.com/v3/gists/">GitHub API</a> for sharing code snippets as <a href="https://gist.github.com/">gists</a>.</p>
+			<p>If you want to get involved to help make xpathr better (or perhaps fix a bug you've found), please <a href="http://github.com/alpacaaa/xpathr">fork xpathr on GitHub</a> and send a pull request.</p>
 			<h2>Created by</h2>
 			<ul>
 				<li><a href="http://symphony-cms.com/get-involved/member/alpacaaa/">Marco Sampellegrini</a></li>
