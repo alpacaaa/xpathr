@@ -1,6 +1,6 @@
 
 
-# Xpathr
+# xpathr
 
 A very basic explanation of the extension and what does it provide.
 
