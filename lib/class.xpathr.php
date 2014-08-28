@@ -247,7 +247,9 @@
 			if (isset(self::$cache[$url]))
 				return self::$cache[$url];
 
-			$data = file_get_contents($url);
+			$context_options = array('http' => array('user_agent'=> $_SERVER['HTTP_USER_AGENT']));
+			$context  = stream_context_create($context_options);
+			$data = file_get_contents($url, false, $context);
 			if (!$data) throw new XpathrException('Resource not found');
 
 			$data = json_decode($data);
