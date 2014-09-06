@@ -134,7 +134,7 @@
 				// Gist exists!
 				$fields = array(
 					'gist-id' => $id,
-					'user' => $data->user->login,
+					'user' => $data->owner->login,
 					'title' => $data->description,
 					'revisions-list' => $revisions_list,
 					'forks-list' => $forks_list
